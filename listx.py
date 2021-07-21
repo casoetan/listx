@@ -21,7 +21,7 @@ def main():
     path_size = service.get_path_size()
     path_items = service.get_path_items()
 
-    print(f"total files {len(path_items)}")
+    # print(f"total files {len(list(path_items))}")
     print(f"total size {path_size}")
     print("---")
 
