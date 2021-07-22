@@ -2,10 +2,11 @@ import { HTMLAttributes, useCallback, useState } from "react"
 
 interface FolderSelectorProps extends HTMLAttributes<HTMLDivElement> {
   onListContent: (folderPath: string) => void
+  folder: string
+  setFolder: (folder: string) => void
 }
 
-const FolderSelector = ({ onListContent }: FolderSelectorProps) => {
-  const [folder, setFolder] = useState('')
+const FolderSelector = ({ onListContent, folder, setFolder }: FolderSelectorProps) => {
 
   const onFolderChange = useCallback(e => {
     setFolder(e.target.value)

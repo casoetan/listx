@@ -1,14 +1,19 @@
 import Head from 'next/head'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import FolderLister from '../components/FolderLister'
 import FolderSelector from '../components/FolderSelector'
+import FolderMetadata from '../components/FolderMetadata'
 import styles from '../styles/Home.module.css'
 
 const API_ENDPOINT = 'http://localhost:5000/api/listx'
 
 export default function Home() {
-
+  const [folder, setFolder] = useState('')
   const [folderContent, setFolderContent] = useState([])
+
+  useEffect(() => {
+    setFolderContent([])
+  }, [folder])
 
   const getFolderDir = useCallback(async (folder) => {
     if (!folder) {
@@ -33,10 +38,12 @@ export default function Home() {
         </h1>
 
         <div className={styles.folderSelector}>
-          <FolderSelector onListContent={getFolderDir} />
+          <FolderSelector onListContent={getFolderDir} folder={folder} setFolder={setFolder} />
         </div>
-        <hr />
+
+        <FolderMetadata folderList={folderContent} />
         <FolderLister folderList={folderContent} />
+
       </main>
 
       <footer className={styles.footer}>

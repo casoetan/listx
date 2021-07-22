@@ -26,7 +26,7 @@ const FolderLister = ({ folderList }: FolderListerProps) => {
           </tr>
         ))}
       </tbody>
-    </table> : <div>No folders found</div>
+    </table> : <div>Click List content to see details</div>
   )
 }
 

@@ -18,18 +18,21 @@ def main():
     args = parser.parse_args()
 
     service = ListxService(args.path)
-    path_size = service.get_path_size()
     path_items = service.get_path_items()
 
-    # print(f"total files {len(list(path_items))}")
-    print(f"total size {path_size}")
-    print("---")
+    size = 0
+    count = 0
 
-    print(f"{'Item':<14} {'Name':<64} {'Is File':<10} {'Modified':<20}")
+    print(f"{'Item (KB)':<14} {'Name':<64} {'Is File':<10} {'Modified':<20}")
     print("---")
 
     for item in path_items:
+        count += 1
+        size += item["size"]
         cli_printer(item)
 
+    print("---")
+    print(f"total size {size} KB")
+    print(f"total files {count}")
 
 main()
